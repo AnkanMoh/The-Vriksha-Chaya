@@ -1,0 +1,33 @@
+name: Vriksha-Chaya Daily Chapter
+
+on:
+  schedule:
+    # 3:30 UTC = 9:00 AM India (IST)
+    - cron: "30 3 * * *"
+  # optional: lets you trigger it manually from the Actions tab
+  workflow_dispatch: {}
+
+jobs:
+  write_chapter:
+    runs-on: ubuntu-latest
+
+    env:
+      GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+      GITHUB_TOKEN: ${{ secrets.VRIKSHA_GH_TOKEN }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade google-adk PyGithub google-genai
+
+      - name: Run horror pipeline
+        run: |
+          python vriksha_chaya_main.py
