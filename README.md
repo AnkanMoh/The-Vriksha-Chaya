@@ -123,12 +123,4 @@ Potential extensions include:
 
 The system is active, and a new chapter is automatically added each day.
 
-If you'd like, I can also generate:
-
-* A versioned changelog
-* A FAQ section
-* A contribution guide
-* A visual architecture diagram
-* A website page for public reading of chapters
-
 
